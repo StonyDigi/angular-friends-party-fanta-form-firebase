@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>Kedves barátaim, akinek van kedve egy ittalvós, sütögetős bulihoz nálam az iratkozzon fel a választható időpontok egyikére.</h1>
+  <b>"Haverok, buli  <img src="assets/FANTA.jpg" alt="..." />,,</b>
+  <p class="warning">(A legtöbb szavazatot kapott időpont lesz az aktuális.)</p>
+  
+  <h2 class="title">Időpont választás</h2>
+  <form *ngIf="!service.submitted"  class="form">
+    <div class="form-group">
+      <label for="name">Név:</label>
+      <input type="text" id="name" [(ngModel)]="actual.name" name="name" required>
+    </div>
+    <div class="form-group">
+      <label for="timeSlot">Válassz időpontot:</label>
+      <select id="timeSlot" [(ngModel)]="actual.timeSlot" name="timeSlot">
+        <option *ngFor="let x of timeSlots" [value]="x">{{x}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn" [disabled]="alreadyRegistered()" (click)="submitForm()">Küldés</button>
+  </form>
+
+  <p *ngIf="service.submitted" class="message already-registered">Sikeresen elküldve! Köszönjük!<button (click)="this.service.clearForm()" >clear</button></p>
+  
+  <span *ngIf="alreadyRegistered()" class="already-registered">Erre az időpontra már jelentkeztél!</span>
+
+  <div *ngIf="alreadyRegistered()" class="already-registered">
+    Ezzel a névvel már felvették az időpontot.
+  </div>
+  
+  <table *ngIf="service.questionnaires.length > 0" class="table">
+    <tr>
+      <th>Név</th>
+      <th>Időpont</th>
+      <th>Dátum</th>
+    </tr>
+    <tr *ngFor="let data of service.questionnaires">
+      <td>{{data.name}}</td>
+      <td>{{data.timeSlot}}</td>
+      <td>{{data.date | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+    </tr>
+  </table>
+
+  <footer>
+      <p>2023 Somossy László</p>
+      <p>&copy;Minden jog fenntartva.</p>
+  </footer>
+
+  
+</div>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "stony-ittalvos": {
+      "hosting": {
+        "stony-ittalvos": [
+          "stony-ittalvos"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "stony-ittalvos"
+  }
+}
